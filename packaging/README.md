@@ -1,13 +1,13 @@
-# Thor LAVD stability build
+# Thor LAVD main build
 
-Base: upstream v1.1.3, `c8728c6b6a3fde451f0f10b95f99aad7a32a750a`.
-Five upstream commits imported once from Pocknix's 0001–0005 patches:
+Base: upstream main, `8820f95ed56da7bae2966477fa457cb488a7207d`.
+It already includes the five upstream fixes previously carried from Pocknix:
 `6d31ddd`, `d762220`, `02ff6a5`, `e6aab93`, `0745c74`.
-The Arch Linux ARM 1.1.3-2 package was replaced from this known source base,
-not patched in place; its version alone is not evidence of every carried fix.
+They were skipped as already applied during rebase, not applied a second time.
 
-The native ARM64 recipe builds the upstream workspace binary set, excluding
-the same development-only members as Pocknix. It uses installed Rust and a
+The native ARM64 recipe builds the workspace except development/self-test
+members and experimental schedulers requiring a separate nightly Rust BPF
+toolchain. The removed upstream scx_rustland binary is not retained. It uses installed Rust and a
 checksum-pinned mbx 1.30.0 build wrapper, with automatic cache GC disabled.
 No unit tests are invoked. Thor retains its existing LAVD launch arguments.
 The bundled libbpf C build pre-includes system Linux types: its private shim
@@ -21,5 +21,5 @@ cd packaging
 makepkg --nocheck
 ```
 
-Package identity: scx-scheds 1.1.3-3. Installation and live scheduler
+Package identity: scx-scheds 1.1.4.r883.g8820f95e-1. Installation and live scheduler
 acceptance remain outstanding until explicitly recorded by the integrator.
