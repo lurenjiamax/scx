@@ -10,6 +10,9 @@ The native ARM64 recipe builds the upstream workspace binary set, excluding
 the same development-only members as Pocknix. It uses installed Rust and a
 checksum-pinned mbx 1.30.0 build wrapper, with automatic cache GC disabled.
 No unit tests are invoked. Thor retains its existing LAVD launch arguments.
+The bundled libbpf C build pre-includes system Linux types: its private shim
+lacks `__u128`, required by ARM64 linux-api-headers 7.3 signal/ptrace structs.
+No system headers or Cargo registry sources are modified.
 
 Build on ARM64 with prerequisites installed:
 

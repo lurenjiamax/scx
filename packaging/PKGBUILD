@@ -15,6 +15,8 @@ sha256sums=('6317bb6780404e78c3b670d95e128c85871809dfc541882b2efaa34120f45e71')
 build() {
   cd "${THORCH_SCX_SOURCE_DIR:-${startdir}/..}"
   export MBX_GC_AUTO=0 MBX_DISPLAY=plain
+  # New ARM64 asm headers need __u128 omitted by libbpf's private types shim.
+  export LIBBPF_SYS_EXTRA_CFLAGS="-include /usr/include/linux/types.h ${LIBBPF_SYS_EXTRA_CFLAGS:-}"
   "${srcdir}/mbx" build --release --locked --workspace \
     --exclude scx_rlfifo --exclude scx_mitosis --exclude scx_characterize \
     --exclude xtask --exclude vmlinux_docify --exclude scx_arena_selftests
