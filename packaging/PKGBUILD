@@ -1,6 +1,6 @@
-# Thor tracks upstream main; the five earlier LAVD fixes are already upstream.
+# Native package of the maintained upstream-main checkout.
 pkgname=scx-scheds
-pkgver=1.1.4.r883.g8820f95e
+pkgver=1.1.4.r889.g48e2a9cb
 pkgrel=1
 pkgdesc='sched_ext schedulers and tools with Thor LAVD stability fixes'
 arch=(aarch64)
